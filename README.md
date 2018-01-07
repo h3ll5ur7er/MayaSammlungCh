@@ -1,4 +1,4 @@
-# Mayasammlung.ch 
+# Maya-Sammlung.ch 
 
 ## Installation instructions:
 The current page is driven by TurboGears2 using kajiki templates and sqlalchemy orm.
