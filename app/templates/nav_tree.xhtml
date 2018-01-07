@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+  <title>Mayasammlung.ch</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" class="cssdeck" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      <a class="navbar-brand" href="#">Mayasammlung.ch</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="${'active' if active_nav_index == 1 else ''}"><a href="/index">Home</a></li>
+        <li class="${'active' if active_nav_index == 2 else ''}"><a href="/catalog">Katalog</a></li>
+        <li class="${'active' if active_nav_index == 3 else ''}"><a href="/about">&Uuml;ber uns</a></li>
+        <li class="${'active' if active_nav_index == 4 else ''}"><a href="/contact">Kontakt</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container">
+	<div class="row">
+        <div class="well" style="width:300px; padding: 8px 0;">
+            <div style="overflow-y: scroll; overflow-x: hidden; height: 500px;">
+                <ul class="nav nav-list">
+
+                    <li><label class="tree-toggler nav-header">Kategorien</label>
+                        <ul class="tree">
+                            <py:for each="category in categories">
+                                <li><label class="tree-toggler" ><a href="#">${category}</a><span class="tree-toggler glyphicon glyphicon-chevron-down pull-right"></span></label><br />
+                                    <ul class="nav nav-list tree">
+                                        <py:for each="village in category.villages">
+                                            <li><span class="tree-toggler glyphicon glyphicon-chevron-down pull-right"></span><br />
+                                                <ul class="nav nav-list tree">
+                                                    <li><a href="#">${village}</a></li>
+                                                </ul>
+                                            </li>
+                                        </py:for>
+                                    </ul>
+                                </li>
+                            </py:for>
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+
+<!-- 
+                    <li><label class="tree-toggler nav-header">Departemente</label>
+                        <ul class="nav nav-list tree">
+                            <py:for each="department in departments">
+                                <li><a href="#">${department}</a><span class="tree-toggler glyphicon glyphicon-chevron-down pull-right"></span><br />
+                                    <ul class="nav nav-list tree">
+                                        <py:for each="village in department.villages">
+                                            <li><span class="tree-toggler glyphicon glyphicon-chevron-down pull-right"></span><br />
+                                                <ul class="nav nav-list tree">
+                                                    <li><a href="#">${village}</a></li>
+                                                </ul>
+                                            </li>
+                                        </py:for>
+                                    </ul>
+                                </li>
+                            </py:for>
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+
+
+                    <li><label class="tree-toggler nav-header">Sprachgruppen</label>
+                        <ul class="nav nav-list tree">
+                            <py:for each="langgroup in langgroups">
+                                <li><a href="#">${langgroup}</a><span class="tree-toggler glyphicon glyphicon-chevron-down pull-right"></span><br />
+                                    <ul class="nav nav-list tree">
+                                        <py:for each="village in langgroup.villages">
+                                            <li><span class="tree-toggler glyphicon glyphicon-chevron-down pull-right"></span><br />
+                                                <ul class="nav nav-list tree">
+                                                    <li><a href="#">${village}</a></li>
+                                                </ul>
+                                            </li>
+                                        </py:for>
+                                    </ul>
+                                </li>
+                            </py:for>
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+
+
+                    <li><label class="tree-toggler nav-header">D&ouml;rfer</label>
+                        <ul class="nav nav-list tree">
+                            <py:for each="village in villages">
+                                <li><a href="#">${village}</a><span class="tree-toggler glyphicon glyphicon-chevron-down pull-right"></span><br />
+                                    <ul class="nav nav-list tree">
+                                        <py:for each="village in langgroup.villages">
+                                            <li><span class="tree-toggler glyphicon glyphicon-chevron-down pull-right"></span><br />
+                                                <ul class="nav nav-list tree">
+                                                    <li><a href="#">${village}</a></li>
+                                                </ul>
+                                            </li>
+                                        </py:for>
+                                    </ul>
+                                </li>
+                            </py:for>
+                        </ul>
+                    </li> -->
+
+
+
+                </ul>
+            </div>
+        </div>
+	</div>
+</div>
+
+
+
+</body>
+</html>
