@@ -4,14 +4,17 @@
 
 from tg import expose, TGController
 from sqlalchemy.orm import Session
-from data_model_lite import Department, LangGroup, Village, Category, Object
+from model.data_model_lite import Department, LangGroup, Village, Category, Object
+from controllers.login_controller import LoginController
 
 class RootController(TGController):
     """ Main controller for the katalog_py webservice """
 
-    def __init__(self, engine):
-        self.engine = engine
+    login = None
 
+    def __init__(self, engine, login_engine):
+        self.engine = engine
+        self.login = LoginController(login_engine)
 
     @expose("templates/default.xhtml")
     def index(self):

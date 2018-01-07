@@ -6,22 +6,25 @@ from wsgiref.simple_server import make_server
 from tg import AppConfig
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from root_controller import RootController
+from controllers.root_controller import RootController
 
 DEFAULT_ACTION = 'run'
 SQLITE_DATA_TARGET = "sqlite:///db__data_target.db"
+LOGIN_DATA_TARGET = "sqlite:///db__login.db"
 
 def start_server():
 
     """ start webserver """
 
-    engine = create_engine(SQLITE_DATA_TARGET)
-    config = AppConfig(minimal=True, root_controller=RootController(engine))
+    catalog_engine = create_engine(SQLITE_DATA_TARGET)
+    login_engine = create_engine(LOGIN_DATA_TARGET)
+    config = AppConfig(minimal=True, root_controller=RootController(catalog_engine, login_engine))
     config.sa_auth.charset = 'utf-8'
     config.renderers = ['kajiki']
     config.default_renderer = 'kajiki'
     config.serve_static = True
     config.paths['static_files'] = 'public'
+    config.paths['controllers'] = 'controllers'
 
     application = config.make_wsgi_app()
     print "Serving on port 8080..."
@@ -33,7 +36,7 @@ def test():
 
     """ debug testing function """
 
-    from data_model_lite import Model, Department, LangGroup, Village, Category, Object, Picture
+    from app.model.data_model_lite import Model, Department, LangGroup, Village, Category, Object, Picture
     engine = create_engine(SQLITE_DATA_TARGET)
     session = Session(engine)
     query = session.query(Object)
