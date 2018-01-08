@@ -6,22 +6,25 @@ from tg import expose, TGController
 from sqlalchemy.orm import Session
 from model.data_model_lite import Department, LangGroup, Village, Category, Object
 from controllers.login_controller import LoginController
+from controllers.api_controller import ApiController
 
 class RootController(TGController):
     """ Main controller for the katalog_py webservice """
 
     login = None
+    api = None
 
     def __init__(self, engine, login_engine):
         self.engine = engine
         self.login = LoginController(login_engine)
+        self.api = ApiController(engine)
 
     @expose("templates/default.xhtml")
     def index(self):
         """ home page """
         content = {
             'active_nav_index':1,
-            'body_header':"Willkommen",
+            'body_header': "Willkommen",
             'body_content': self._lorem_ipsum()
         }
         return content
