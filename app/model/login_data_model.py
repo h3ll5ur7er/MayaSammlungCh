@@ -11,11 +11,15 @@ class User(Model):
     """ Department data object """
     __tablename__ = 'ms_users'
 
+    def __init__(self, email, hash):
+        self.email = email
+        self.pw_hash = hash
+
     def __str__(self):
-        return "{}".format(self.name)
+        return "{}".format(self.email)
 
     def __repr__(self):
-        return "{}".format(self.name)
+        return "{}".format(self.email)
 
     id = Column(Integer, primary_key=True)
     email = Column(String(150), nullable=False)
