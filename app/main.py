@@ -36,7 +36,7 @@ def test():
 
     """ debug testing function """
 
-    from app.model.data_model_lite import Model, Department, LangGroup, Village, Category, Object, Picture
+    from model.data_model_lite import Model, Department, LangGroup, Village, Category, Object, Picture
     engine = create_engine(SQLITE_DATA_TARGET)
     session = Session(engine)
     query = session.query(Object)
