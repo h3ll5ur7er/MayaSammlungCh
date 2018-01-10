@@ -1,0 +1,67 @@
+<html py:extends="master.xhtml" py:strip="True">
+  <head py:block="head" py:strip="True">
+    <title py:block="master_title">Maya-Sammlung.ch - ${obj.object_number} - ${obj.object_name}</title>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="${tg.url('/javascript/scripts.js')}"></script>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/packery@2/dist/packery.pkgd.min.js"></script>
+  </head>
+
+  <body py:block="body" py:strip="True">
+    <div class="container-fluid">
+      <py:if test="obj">
+        <div class="row">
+            <div class="panel panel-default col-md-4">
+              <div class="panel-heading">${obj.object_number}</div>
+              <div class="panel-body">            
+                <small><h6>Objektname</h6></small>
+                <p>${obj.object_name}</p>
+                <small><h6>Kategorie</h6></small>
+                <p>${obj.category}</p>
+                <small><h6>Herkunft</h6></small>
+                <p>${obj.village}</p>
+                <py:if test="obj.description_material != '' or obj.description_craft != ''">
+                  <small><h6>Beschreibung</h6></small>
+                </py:if>
+                <py:if test="obj.description_material != '' ">
+                  <small><h6>Material</h6></small>
+                  <p>${obj.description_material}</p>
+                </py:if>
+                <py:if test="obj.description_craft != ''">
+                  <small><h6>Herstellung</h6></small>
+                  <p>${obj.description_craft}</p>
+                </py:if>
+                <py:if test="obj.date != ''">
+                  <small><h6>Datierung</h6></small>
+                  <p>${obj.date}</p>
+                </py:if>
+                <py:if test="obj.measure != ''">
+                  <small><h6>Masse</h6></small>
+                  <p>${obj.measure}</p>
+                </py:if>
+                <py:if test="obj.condition != ''">
+                  <small><h6>Zustand</h6></small>
+                  <p>${obj.condition}</p>
+                </py:if>
+                <py:if test="obj.origin != ''">
+                  <small><h6>Erworben</h6></small>
+                  <p>${obj.origin}</p>
+                </py:if>
+                <py:if test="obj.more != ''">
+                  <small><h6>Weiteres</h6></small>
+                  <p>${obj.more}</p>
+                </py:if>
+              </div>
+            </div>
+            <div class="img-grid col-md-8">
+              <div class="grid-img grid-img--4" py:for="pic in obj.pictures">
+                <img class="img-responsive" src="${pic.b64_data}" />
+              </div>
+            </div>
+          </div>
+      </py:if>
+    </div>
+  </body>
+</html>

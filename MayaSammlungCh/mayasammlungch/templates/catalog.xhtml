@@ -1,0 +1,31 @@
+<html py:extends="master.xhtml" py:strip="True">
+  <head py:block="head" py:strip="True">
+      <title py:block="master_title">Maya-Sammlung.ch - Catalog</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+      <script src="${tg.url('/javascript/scripts.js')}"></script>
+  </head>
+
+  <body py:block="body" py:strip="True">
+    <py:if test="objects">
+      <div class="container-fluid grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 120 }'>
+        <div py:for="obj in objects" class="col-lg-2 col-md-3 col-sm-4 grid-item catalog-object" object_id="${obj.id}">
+          <div class="panel panel-default">
+            <div class="panel-heading">${obj.object_number}</div>
+            <img class="img-responsive" src="${obj.thumbnail.b64_data}" />
+            <div class="panel-body">            
+              <small><h6>Objektname</h6></small>
+              <p>${obj.object_name}</p>
+              <small><h6>Kategorie</h6></small>
+              <p>${obj.category}</p>
+              <small><h6>Herkunft</h6></small>
+              <p>${obj.village}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </py:if>
+  </body>
+</html>
