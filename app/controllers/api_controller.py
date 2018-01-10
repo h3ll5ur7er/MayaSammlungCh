@@ -3,7 +3,7 @@
 """ Api controller for the katalog_py webservice """
 
 from tg import expose, TGController, response
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from model.data_model_lite import Department, LangGroup, Village, Category, Object
 
 
@@ -29,12 +29,12 @@ class ApiController(TGController):
     @expose('json')
     def catalog(self, offset=0, limit=32, **kwargs):
         session = Session(self.engine)
-        query = session.query(Object)
+        query = session.query(Object).options(joinedload("*"))
 
         slice_from = int(offset)
         slice_to = int(offset) + int(limit)
 
-        objects = [obj for obj in query.order_by(Object.object_number)][slice_from:slice_to]
+        objects = query.order_by(Object.object_number)[slice_from:slice_to]
 
         response_data = {
             'items': objects,
