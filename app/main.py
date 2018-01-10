@@ -48,6 +48,8 @@ def test():
 
     print("min number length: {}".format(min(obj_nr_l)))
     print("max number length: {}".format(max(obj_nr_l)))
+    
+    exit(0)
 
 
 if __name__ == "__main__":
